@@ -1,5 +1,5 @@
 export interface FormDataDto {
-    userName: string;
-    userEmail: string;
-    userText: number;
+    name: string;
+    email: string;
+    text: string;
   }

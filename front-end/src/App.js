@@ -1,74 +1,84 @@
 import styled from 'styled-components'
 import axios from "axios";
 import GlobalStyles from "./globalStyles"
+import { useState } from 'react';
+
+import { RiLinkedinFill } from 'react-icons/ri';
+import { ImTwitter } from 'react-icons/im';
+import { FaFacebookF } from 'react-icons/fa';
+import { BsPinterest } from 'react-icons/bs';
 
 function App() {
+  const [isLoading, setSetLoading] = useState(false)
   const sendMessageData = (e) => {
     e.preventDefault()
+    setSetLoading(true)
     const userMessageObject = {
-      userName:e.target.userName.value,
-      userEmail:e.target.userEmail.value,
-      userText:e.target.userText.value
+      name:e.target.userName.value,
+      email:e.target.userEmail.value,
+      text:e.target.userText.value
     }
 
     axios.post(`http://localhost:8000/api/send-message`, userMessageObject)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .then(response => setSetLoading(false))
+      .catch(error => alert(error),setSetLoading(false))
   }
 
+  const iconSize = 25
+
   return (
-    <MainContainer>
+    <AppSection>
       <GlobalStyles/>
-      <FormSection className="form_sectiom">
-        <Form className="form" onSubmit={sendMessageData}>
-          <input name="userName" className="input_field" type="name" placeholder="Your name" required/>
-          <input name="userEmail" className="input_field" type="email" placeholder="Your email" required/>
-          <textarea name="userText" className="input_field text_area" placeholder="Your message" required/>
-          <Button className="submit_button">Send message</Button>
-        </Form>
-      </FormSection>
+      <MainSection className="main_section">
+        <FormSection className="form_sectiom">
+          <Heading>Reach out to us!</Heading>
+          <Form className="form" onSubmit={sendMessageData}>
+            <input name="userName" className="input_field" type="name" placeholder="Your name" required/>
+            <input name="userEmail" className="input_field" type="email" placeholder="Your email" required/>
+            <textarea name="userText" className="input_field text_area" placeholder="Your message" required/>
+            <Button className={!isLoading ? "submit_button" : "loading_button"}>{!isLoading ? "Send message" : "Sending..."}</Button>
+          </Form>
+        </FormSection>
+      </MainSection>
       <Footer>
+          <section className="icon_section">
+            <RiLinkedinFill className="icon" size={iconSize}/>
+            <ImTwitter className="icon" size={iconSize}/>
+            <FaFacebookF className="icon" size={iconSize}/>
+            <BsPinterest className="icon" size={iconSize}/>
+          </section>
       </Footer>
-    </MainContainer>
+    </AppSection>
   );
 }
 
 export default App;
 
-const MainContainer = styled.div`
-  height:100vh;
-  @media (max-width: 768px) {
-    .submit_button{
-      align-self: stretch;
-    }
-  }
+const Heading = styled.h1`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  color:#3E3E3E;
+  margin-bottom:30px;
 `
 
-const FormSection = styled.div`
-  margin: 0 50px;
+const AppSection = styled.div`
+  height:100vh;
+`
+const MainSection = styled.div`
   height:80%;
   display:flex;
+  justify-content:center;
   align-items:center;
 `;
 
-const Form = styled.form`
+const FormSection = styled.div`
   width:50%;
+`;
+
+const Form = styled.form`
   display:flex;
   flex-direction: column;
-  .input_field{
-    font-size:18px;
-    margin-bottom:8px;
-    padding:15px 23px;
-    border: 1px solid #DCDCDC;
-    border-radius: 10px;
-  }
-  .text_area{
-    height:189px;
-    margin-bottom:23px;
-  }
-  @media (max-width: 768px) {
-    width:100%;
-  }
 `;
 
 const Button = styled.button`
@@ -76,14 +86,10 @@ const Button = styled.button`
   transition:.5s;
   color:white;
   font-size: 18px;
-  background: #FAD34F;
   padding: 15px 25px 16px;
   border:none;
   border-radius: 500px;
   align-self: start;
-  &:hover{
-    background: #faa84f;
-  }
 `;
 
 const Footer = styled.div`
