@@ -10,8 +10,18 @@ import { BsPinterest } from 'react-icons/bs';
 
 function App() {
   const [isLoading, setSetLoading] = useState(false)
+
+  const successfulSend = (e) => {
+    alert("Your letter successfully sended")
+    setSetLoading(false)
+  }
+
+  const failedSend = (error) => {
+    alert(error)
+    setSetLoading(false)
+  }
+
   const sendMessageData = (e) => {
-    e.preventDefault()
     setSetLoading(true)
     const userMessageObject = {
       name:e.target.userName.value,
@@ -20,8 +30,8 @@ function App() {
     }
 
     axios.post(`http://localhost:8000/api/send-message`, userMessageObject)
-      .then(response => setSetLoading(false))
-      .catch(error => alert(error),setSetLoading(false))
+      .then(response => successfulSend())
+      .catch(error => failedSend(error))
   }
 
   const iconSize = 25
