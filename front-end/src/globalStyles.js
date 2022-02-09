@@ -1,5 +1,7 @@
 import {createGlobalStyle} from "styled-components"
 
+//GLOBAL STYLES
+
 const GlobalStyles = createGlobalStyle`
     *{
         margin: 0;
@@ -49,7 +51,6 @@ const GlobalStyles = createGlobalStyle`
         align-items:center;
     }
 
-    
     .icon{
         color:#696969;
         margin-left:25px;

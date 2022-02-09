@@ -8,18 +8,23 @@ import { FaFacebookF } from 'react-icons/fa';
 import { BsPinterest } from 'react-icons/bs';
 
 export const FormPage = () => {
+    //TO NAVIGATE THOUGH ROUTES
     const history = useNavigate()
+    //LOADING STATE
     const [isLoading, setSetLoading] = useState(false)
 
+    //REDIRECT TO MESSAGE OF SUCCESS
     const successfulSend = (e) => {
         history("/success")
     }
   
+    //ALERT ERROR AND DISABLE LOADING BUTTON
     const failedSend = (error) => {
       alert(error)
       setSetLoading(false)
     }
   
+    //SEND FORM DATA TO BACKEND
     const sendMessageData = (e) => {
       e.preventDefault()
       setSetLoading(true)
@@ -34,6 +39,7 @@ export const FormPage = () => {
         .catch(error => failedSend(error))
     }
   
+    //ICON SIZE
     const iconSize = 25
   
     return (
@@ -61,6 +67,7 @@ export const FormPage = () => {
     )
 }
 
+//STYLED COMPONENTS
 const Heading = styled.h1`
   font-style: normal;
   font-weight: normal;

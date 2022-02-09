@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { IoIosMail } from 'react-icons/io';
 
+//MESSAGE IF SUBMIT WAS SUCCESSFULL
+
 export const SuccessfullSubmitMessage = () => {
     return (
         <MainSection>
@@ -12,6 +14,7 @@ export const SuccessfullSubmitMessage = () => {
     )
 }
 
+//STYLED COMPONENTS
 const Heading = styled.h1`
   font-style: normal;
   font-weight: normal;

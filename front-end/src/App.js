@@ -5,7 +5,7 @@ import { SuccessfullSubmitMessage } from "./modules/SuccessfullSubmit";
 
 function App() {
   return(
-    <div className="App">
+    <div>
       <GlobalStyles/>
       <Router>
         <Routes>

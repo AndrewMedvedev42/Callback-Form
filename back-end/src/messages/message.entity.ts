@@ -1,4 +1,7 @@
 import { Entity, PrimaryColumn, PrimaryGeneratedColumn, Column } from "typeorm";
+
+//ENTITY FOR FORM DATA
+
 @Entity('messages')
 export class MessageDataEntity {
     @PrimaryGeneratedColumn()
