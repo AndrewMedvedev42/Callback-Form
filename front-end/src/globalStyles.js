@@ -49,9 +49,14 @@ const GlobalStyles = createGlobalStyle`
         align-items:center;
     }
 
+    
     .icon{
         color:#696969;
         margin-left:25px;
+    }
+
+    .big_icon{
+        color:#FAD34F;
     }
 
     @media (max-width: 900px) {
